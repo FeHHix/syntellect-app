@@ -5,8 +5,12 @@ import {TextControlExample2} from './example/TextControlExample2';
 function App() {
     return (
         <div>
-            <TextControlExample1 />
-            <TextControlExample2 />
+            <div className="m w2">
+                <TextControlExample1 />
+            </div>
+            <div className="m w3">
+                <TextControlExample2 />
+            </div>
         </div>
     );
 }
