@@ -1,8 +1,8 @@
-import { makeAutoObservable } from 'mobx'
+import {makeAutoObservable} from 'mobx';
 
 /**
  * Создает и возвращает экземпляр реактивной модели с функционалом ввода данных.
- * 
+ *
  * @returns {LocalModel} Экземпляр класса LocalModel
  */
 export const createModel = () => {
@@ -24,7 +24,7 @@ export const createModel = () => {
 
         /**
          * Обновляет значение ввода.
-         * 
+         *
          * @param value - Новое значение для установки
          */
         updateInput(value: string) {
@@ -40,7 +40,7 @@ export const createModel = () => {
 
         /**
          * Геттер для получения текущего значения ввода.
-         * 
+         *
          * @returns Текущее значение ввода
          */
         get inputValue() {
@@ -49,5 +49,4 @@ export const createModel = () => {
     }
 
     return new LocalModel();
-}
-
+};

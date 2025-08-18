@@ -1,5 +1,5 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import { TextControlExample2 } from './TextControlExample2';
+import {render, fireEvent, screen} from '@testing-library/react';
+import {TextControlExample2} from './TextControlExample2';
 
 describe('TextControlExample2', () => {
     beforeEach(() => {
@@ -28,7 +28,7 @@ describe('TextControlExample2', () => {
         render(<TextControlExample2 />);
 
         const textInput = screen.getByTestId('TextControl_text');
-        fireEvent.change(textInput, { target: { value: '123' } });
+        fireEvent.change(textInput, {target: {value: '123'}});
 
         const button = screen.getByTestId('TextControl_showNumberButton');
         fireEvent.click(button);
@@ -40,7 +40,7 @@ describe('TextControlExample2', () => {
         render(<TextControlExample2 />);
 
         const textInput = screen.getByTestId('TextControl_text');
-        fireEvent.change(textInput, { target: { value: 'test' } });
+        fireEvent.change(textInput, {target: {value: 'test'}});
 
         const button = screen.getByTestId('TextControl_showNumberButton');
         fireEvent.click(button);
@@ -52,7 +52,7 @@ describe('TextControlExample2', () => {
         render(<TextControlExample2 />);
 
         const textInput = screen.getByTestId('TextControl_text');
-        fireEvent.change(textInput, { target: { value: 'test' } });
+        fireEvent.change(textInput, {target: {value: 'test'}});
 
         const button = screen.getByTestId('TextControl_showTextButton');
         fireEvent.click(button);
@@ -73,7 +73,7 @@ describe('TextControlExample2', () => {
         render(<TextControlExample2 />);
 
         const textInput = screen.getByTestId('TextControl_text');
-        fireEvent.change(textInput, { target: { value: 'new value' } });
+        fireEvent.change(textInput, {target: {value: 'new value'}});
 
         expect(textInput).toHaveValue('new value');
     });

@@ -1,10 +1,10 @@
-import React, { createContext, useMemo } from 'react';
-import { createModel } from './TextControlTextModel';
-import { createViewModel } from './TextControlTextViewModel';
+import React, {createContext, useMemo} from 'react';
+import {createModel} from './TextControlTextModel';
+import {createViewModel} from './TextControlTextViewModel';
 
 /**
  * Тип данных для контекста управления текстовым контролем.
- * 
+ *
  * @typeparam localModel - Модель локального состояния (создается через createModel).
  * @typeparam viewModel - ViewModel для представления данных (создается через createViewModel).
  */
@@ -14,7 +14,7 @@ type TTextControlContext = {
      * Опционально может быть не определена при инициализации.
      */
     localModel?: ReturnType<typeof createModel>;
-    
+
     /**
      * ViewModel, связанная с локальной моделью.
      * Используется для преобразования данных для представления.
@@ -30,7 +30,7 @@ export const TextControlContext = createContext<TTextControlContext>({});
 
 /**
  * Тип пропсов для провайдера текстового контекста.
- * 
+ *
  * @typeparam children - Дочерние React-элементы, оборачиваемые провайдером.
  */
 type TProps = {
@@ -43,7 +43,7 @@ type TProps = {
 /**
  * Провайдер контекста текстового контрола.
  * Создает и предоставляет локальную модель и ViewModel дочерним компонентам.
- * 
+ *
  * @param props - Объект с дочерними элементами.
  * @returns React-компонент провайдера.
  */
@@ -55,7 +55,7 @@ export const TextControlProvider = (props: TProps) => {
      * Создается с помощью функции createModel().
      */
     const localModel = createModel();
-    
+
     /**
      * ViewModel, инициализированная с ссылкой на локальную модель.
      * Отвечает за логику представления данных.
@@ -67,7 +67,7 @@ export const TextControlProvider = (props: TProps) => {
      * Кэшируется с помощью useMemo для предотвращения лишних перерисовок.
      */
     const contextValue = useMemo(
-        () => ({ localModel, viewModel }),
+        () => ({localModel, viewModel}),
         [localModel, viewModel]
     );
 
@@ -77,4 +77,3 @@ export const TextControlProvider = (props: TProps) => {
         </TextControlContext.Provider>
     );
 };
-

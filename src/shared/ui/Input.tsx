@@ -1,5 +1,5 @@
 import React from 'react';
-import { IDataTestAttributes } from '../model/types';
+import {IDataTestAttributes} from '../model/types';
 
 /**
  * Тип пропсов для компонента Input.
@@ -25,7 +25,14 @@ type TProps = IDataTestAttributes & {
  * @returns JSX-элемент input
  */
 export const Input: React.FC<TProps> = (props) => {
-    const { dataTestId, onChange, value } = props;
+    const {dataTestId, onChange, value} = props;
 
-    return <input className="btn" data-testid={dataTestId} onChange={onChange} value={value} />;
+    return (
+        <input
+            className="btn"
+            data-testid={dataTestId}
+            onChange={onChange}
+            value={value}
+        />
+    );
 };

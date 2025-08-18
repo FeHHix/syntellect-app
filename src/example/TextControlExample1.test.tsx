@@ -1,5 +1,5 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import { TextControlExample1 } from './TextControlExample1';
+import {render, fireEvent, screen} from '@testing-library/react';
+import {TextControlExample1} from './TextControlExample1';
 
 describe('TextControlExample1', () => {
     it('отображает TextControl и кнопки корректно', () => {

@@ -1,8 +1,8 @@
-import { createModel } from './TextControlTextModel';
+import {createModel} from './TextControlTextModel';
 
 /**
  * Создает и возвращает экземпляр ViewModel, связанный с моделью текстового контроля.
- * 
+ *
  * @param model - Модель текстового контроля, созданный через createModel
  * @returns Новый экземпляр ViewModel
  */
@@ -42,5 +42,4 @@ export const createViewModel = (model: ReturnType<typeof createModel>) => {
     }
 
     return new ViewModel();
-}
-
+};

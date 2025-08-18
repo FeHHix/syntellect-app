@@ -1,8 +1,8 @@
 import React from 'react';
-import { TextControlProvider } from './TextControlProvider';
-import { TextControlText } from './TextControlText';
-import { TextControlLeftButtons } from './TextControlButtonsLeft';
-import { TextControlRightButtons } from './TextControlButtonsRight';
+import {TextControlProvider} from './TextControlProvider';
+import {TextControlText} from './TextControlText';
+import {TextControlLeftButtons} from './TextControlButtonsLeft';
+import {TextControlRightButtons} from './TextControlButtonsRight';
 
 /**
  * Тип, описывающий структуру подкомпонентов TextControl.
@@ -34,17 +34,17 @@ type TProps = {
 
 /**
  * Основной компонент текстового контрола.
- * 
+ *
  * @component
  * @param {TProps} props - Пропсы компонента.
  * @param {React.ReactNode} props.children - Дочерние элементы для рендера.
  * @returns {JSX.Element} Отрендеренный компонент.
  */
 const TextControl: React.FC<TProps> & TTextControlComponent = (props) => {
-    const { children } = props;
+    const {children} = props;
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{display: 'flex'}}>
             <TextControlProvider>{children}</TextControlProvider>
         </div>
     );
@@ -57,4 +57,4 @@ TextControl.Text = TextControlText;
 TextControl.LeftButtons = TextControlLeftButtons;
 TextControl.RightButtons = TextControlRightButtons;
 
-export { TextControl };
+export {TextControl};
