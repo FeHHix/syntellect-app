@@ -1,20 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { IDataTestAttributes } from '../model/types';
 
 /**
  * Тип пропсов для компонента Input.
  */
-type TProps = {
+type TProps = IDataTestAttributes & {
     /**
      * Обработчик события изменения значения в поле ввода.
      * Вызывается при изменении значения пользователем.
      */
-    onChange: React.ChangeEventHandler<HTMLInputElement>
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
     /**
      * Текущее значение поля ввода.
      * Отображается в поле и используется для управления состоянием.
      */
-    value: string
-}
+    value: string;
+};
 
 /**
  * Функциональный компонент Input.
@@ -23,6 +24,8 @@ type TProps = {
  * @param props - Объект пропсов, содержащий `onChange` и `value`
  * @returns JSX-элемент input
  */
-export const Input: React.FC<TProps> = ({ onChange, value }) => (
-    <input className="btn" onChange={onChange} value={value} />
-)
+export const Input: React.FC<TProps> = (props) => {
+    const { dataTestId, onChange, value } = props;
+
+    return <input className="btn" data-testid={dataTestId} onChange={onChange} value={value} />;
+};

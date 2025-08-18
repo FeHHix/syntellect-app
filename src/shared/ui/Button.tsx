@@ -1,9 +1,10 @@
 import React from 'react'
+import { IDataTestAttributes } from '../model/types'
 
 /**
  * Тип свойств для компонента Button
  */
-type TProps = {
+type TProps = IDataTestAttributes & {
     /**
      * Текст, отображаемый на кнопке
      */
@@ -20,8 +21,12 @@ type TProps = {
  * @param props - Свойства компонента.
  * @returns JSX-элемент кнопки.
  */
-export const Button: React.FC<TProps> = ({ label, onClick }) => (
-    <button className="btn" onClick={onClick}>
-        {label}
-    </button>
-)
+export const Button: React.FC<TProps> = (props) => {
+    const { dataTestId, label, onClick } = props
+
+    return (
+        <button className="btn" data-testid={dataTestId} onClick={onClick}>
+            {label}
+        </button>
+    )
+}
