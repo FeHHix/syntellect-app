@@ -18,7 +18,6 @@ export const createModel = () => {
         }
 
         setFocused(focused: boolean) {
-            console.log('setFocused:', focused);
             this._focused = focused;
         }
 
@@ -49,7 +48,6 @@ export const createModel = () => {
         }
 
         get focused(): boolean {
-            console.log('getFocused:', this._focused);
             return this._focused;
         }
 
@@ -65,8 +63,6 @@ export const createModel = () => {
             return this._filteredOptions;
         }
     }
-
-    console.log('createModel');
 
     return new LocalModel();
 };

@@ -42,7 +42,6 @@ export const createViewModel = (props: TProps) => {
                 () => this._model.search,
                 debounce(() => {
                     if (this._model.search.length >= this._minCharsToFetch) {
-                        console.log('fetchOptions:', this._model.search);
                         this.fetchOptions(this._model.search);
                     }
                 }, this._debounceDelay)
@@ -84,8 +83,6 @@ export const createViewModel = (props: TProps) => {
             this._model.reset();
         }
     }
-
-    console.log('createViewModel');
 
     return new ViewModel();
 };

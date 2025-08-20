@@ -34,8 +34,6 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
             onSelect(selectedOption);
         };
 
-        console.log('Current focused:', localModel.focused);
-
         return (
             <>
                 {localModel.focused ? (
