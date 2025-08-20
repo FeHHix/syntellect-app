@@ -40,9 +40,9 @@ export const SuggestInput: React.FunctionComponent<TProps> = ({
 }) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [filteredOptions, setFilteredOptions] = React.useState<IOption[]>([]);
-    const [showDropdown, setShowDropdown] = React.useState(false);
     const [search, setSearch] = React.useState('');
-    const [selectionMade, setSelectionMade] = React.useState(false);
+    const [displayValue, setDisplayValue] = React.useState(''); // Новое состояние для отображаемого значения
+    const [focus, setFocus] = React.useState(false);
 
     // Для дебаунса запросов
     const debouncedFetch = React.useCallback(
@@ -52,60 +52,55 @@ export const SuggestInput: React.FunctionComponent<TProps> = ({
                 const results = await fetcher(search);
                 const limitedResults = results.slice(0, maxSuggestions);
                 setFilteredOptions(limitedResults);
-                setShowDropdown(true);
             } catch (err) {
                 console.error(err);
             } finally {
                 setIsLoading(false);
             }
         }, debounceDelay),
-        [fetcher, debounceDelay]
+        [fetcher, debounceDelay, maxSuggestions]
     );
 
-    // Обработчик изменения
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(event.target.value);
-        setSelectionMade(false);
-    };
-
-    // Скрыть выпадающий список при потере фокуса
-    const hideDropdown = () => {
-        setShowDropdown(false);
-        setFilteredOptions([]);
-    };
-
-    // Выбор пункта
-    const selectOption = (selectedOption: IOption) => {
-        console.log('selectOption', selectedOption.value);
-        setSearch(selectedOption.value);
-        setShowDropdown(false);
-        setFilteredOptions([]);
-        setSelectionMade(true);
-        onSelect(selectedOption);
-    };
-
-    // Начинаем поиск, если набралось достаточное количество символов
+    // Начинаем поиск, если набрано минимум нужное количество символов
     React.useEffect(() => {
-        if (!selectionMade && search.length >= minCharsToFetch) {
-            console.log('debouncedFetch', search);
+        if (search.length >= minCharsToFetch) {
             debouncedFetch(search);
         } else {
             setFilteredOptions([]);
         }
-    }, [search, selectionMade, debouncedFetch, minCharsToFetch]);
+    }, [search, debouncedFetch, minCharsToFetch]);
+
+    // Обработчик изменения поискового инпута
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+    };
+
+    // Выбор пункта
+    const selectOption = (selectedOption: IOption) => {
+        setDisplayValue(selectedOption.value); // обновляем отображаемое значение
+        setSearch(''); // очищаем поисковый инпут
+        setFilteredOptions([]); // скроем список
+        onSelect(selectedOption);
+    };
 
     return (
         <>
-            <Input
-                type="text"
-                placeholder={placeholder}
-                value={search}
-                onChange={handleInputChange}
-                onBlur={hideDropdown}
-                autoComplete="off"
-            />
+            {focus ? (
+                <Input
+                    value={search}
+                    onChange={handleSearchChange}
+                    onBlur={() => setFocus(false)}
+                />
+            ) : (
+                <Input
+                    onFocus={() => setFocus(true)}
+                    value={displayValue}
+                    placeholder={placeholder}
+                    readOnly
+                />
+            )}
             {(isLoading && <div>{loadingMessage}</div>) ||
-                (showDropdown && filteredOptions.length > 0 && (
+                (filteredOptions.length > 0 && (
                     <ul className="suggestions-list">
                         {filteredOptions.map((option) => (
                             <li

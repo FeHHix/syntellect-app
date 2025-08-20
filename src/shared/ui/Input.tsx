@@ -12,7 +12,7 @@ type TProps = IDataTestAttributes &
          * Обработчик события изменения значения в поле ввода.
          * Вызывается при изменении значения пользователем.
          */
-        onChange: React.ChangeEventHandler<HTMLInputElement>;
+        onChange?: React.ChangeEventHandler<HTMLInputElement>;
         onFocus?: () => void;
         /**
          * Текущее значение поля ввода.
@@ -29,7 +29,7 @@ type TProps = IDataTestAttributes &
  * @returns JSX-элемент input
  */
 export const Input: React.FC<TProps> = (props) => {
-    const {dataTestId, onChange, value} = props;
+    const {dataTestId, onChange, value, ...rest} = props;
 
     // const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -42,5 +42,12 @@ export const Input: React.FC<TProps> = (props) => {
     //     },
     // }));
 
-    return <input data-testid={dataTestId} onChange={onChange} value={value} />;
+    return (
+        <input
+            {...rest}
+            data-testid={dataTestId}
+            onChange={onChange}
+            value={value}
+        />
+    );
 };
