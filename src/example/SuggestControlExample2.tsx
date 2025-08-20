@@ -12,7 +12,8 @@ export function SuggestControlExample2() {
         <SuggestControlInput
             placeholder="Type to see suggestions"
             onSelect={handleSelect}
-            maxSuggestions={10} // установим, например, максимум 3 опции
+            maxSuggestions={10}
+            minCharsToFetch={1}
         />
     );
 }

@@ -44,8 +44,6 @@ export const createViewModel = (props: TProps) => {
                     if (this._model.search.length >= this._minCharsToFetch) {
                         console.log('fetchOptions:', this._model.search);
                         this.fetchOptions(this._model.search);
-                    } else {
-                        this._model.reset();
                     }
                 }, this._debounceDelay)
             );
