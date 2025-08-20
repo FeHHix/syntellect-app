@@ -25,7 +25,9 @@ export const TextControlText: React.FC<TProps> = observer((props) => {
                 dataTestId={dataTestId}
                 onChange={
                     viewModel
-                        ? (e) => viewModel.handleInputChange(e.target.value)
+                        ? (e) => {
+                              viewModel.handleInputChange(e.target.value);
+                          }
                         : () => {}
                 }
                 value={localModel?.inputValue || ''}

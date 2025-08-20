@@ -25,7 +25,7 @@ export const Button: React.FC<TProps> = (props) => {
     const {dataTestId, label, onClick} = props;
 
     return (
-        <button className="btn" data-testid={dataTestId} onClick={onClick}>
+        <button data-testid={dataTestId} onClick={onClick}>
             {label}
         </button>
     );

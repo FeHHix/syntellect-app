@@ -4,18 +4,22 @@ import {IDataTestAttributes} from '../model/types';
 /**
  * Тип пропсов для компонента Input.
  */
-type TProps = IDataTestAttributes & {
-    /**
-     * Обработчик события изменения значения в поле ввода.
-     * Вызывается при изменении значения пользователем.
-     */
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-    /**
-     * Текущее значение поля ввода.
-     * Отображается в поле и используется для управления состоянием.
-     */
-    value: string;
-};
+type TProps = IDataTestAttributes &
+    React.RefAttributes<HTMLInputElement> &
+    React.InputHTMLAttributes<HTMLInputElement> & {
+        onBlur?: () => void;
+        /**
+         * Обработчик события изменения значения в поле ввода.
+         * Вызывается при изменении значения пользователем.
+         */
+        onChange: React.ChangeEventHandler<HTMLInputElement>;
+        onFocus?: () => void;
+        /**
+         * Текущее значение поля ввода.
+         * Отображается в поле и используется для управления состоянием.
+         */
+        value: string;
+    };
 
 /**
  * Функциональный компонент Input.
@@ -27,12 +31,16 @@ type TProps = IDataTestAttributes & {
 export const Input: React.FC<TProps> = (props) => {
     const {dataTestId, onChange, value} = props;
 
-    return (
-        <input
-            className="btn"
-            data-testid={dataTestId}
-            onChange={onChange}
-            value={value}
-        />
-    );
+    // const inputRef = React.useRef<HTMLInputElement>(null);
+
+    // React.useImperativeHandle<InputRef, InputRef>(ref, () => ({
+    //     contains: (node: Node) => {
+    //         inputRef.current?.contains(node);
+    //     },
+    //     focus: () => {
+    //         inputRef.current?.focus();
+    //     },
+    // }));
+
+    return <input data-testid={dataTestId} onChange={onChange} value={value} />;
 };
