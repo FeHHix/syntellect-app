@@ -40,14 +40,10 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
             <>
                 {localModel.focused ? (
                     <Input
-                        value={localModel.search}
-                        onBlur={() => {
-                            console.log('onBlur:', localModel.focused);
-                            viewModel.handleFocusChange(false);
-                        }}
                         onChange={(event) => {
                             viewModel.handleSearchChange(event);
                         }}
+                        value={localModel.search}
                     />
                 ) : (
                     <Input

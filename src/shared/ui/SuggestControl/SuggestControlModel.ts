@@ -41,6 +41,7 @@ export const createModel = () => {
         reset() {
             this.setSearch('');
             this.setFilteredOptions([]);
+            this.setFocused(false);
         }
 
         get search(): string {
