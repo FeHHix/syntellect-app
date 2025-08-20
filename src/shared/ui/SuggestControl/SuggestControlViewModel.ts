@@ -53,7 +53,7 @@ export const createViewModel = (props: TProps) => {
 
             return response.map((country) => ({
                 id: country.name,
-                label: country.fullName,
+                label: `${country.name} (${country.fullName})`,
                 value: country.name,
             }));
         }
