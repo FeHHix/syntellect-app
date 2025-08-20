@@ -62,7 +62,17 @@ export const createViewModel = (props: TProps) => {
             try {
                 const results = await this.fetcher(search);
                 const limitedResults = results.slice(0, this._maxSuggestions);
-                this._model.setFilteredOptions(limitedResults);
+                const uniqueSet = new Set<string>();
+                const filtered: IOption[] = [];
+
+                limitedResults.forEach((option) => {
+                    if (!uniqueSet.has(option.id)) {
+                        uniqueSet.add(option.id);
+                        filtered.push(option);
+                    }
+                });
+
+                this._model.setFilteredOptions(filtered);
             } catch (err) {
                 console.error(err);
             } finally {
