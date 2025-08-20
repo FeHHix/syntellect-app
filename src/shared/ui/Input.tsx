@@ -31,17 +31,6 @@ type TProps = IDataTestAttributes &
 export const Input: React.FC<TProps> = (props) => {
     const {dataTestId, onChange, value, ...rest} = props;
 
-    // const inputRef = React.useRef<HTMLInputElement>(null);
-
-    // React.useImperativeHandle<InputRef, InputRef>(ref, () => ({
-    //     contains: (node: Node) => {
-    //         inputRef.current?.contains(node);
-    //     },
-    //     focus: () => {
-    //         inputRef.current?.focus();
-    //     },
-    // }));
-
     return (
         <input
             {...rest}
