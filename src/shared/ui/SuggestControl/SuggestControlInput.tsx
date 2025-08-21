@@ -38,6 +38,7 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
             <>
                 {localModel.focused ? (
                     <Input
+                        dataTestId="SuggestControlInput_search-input"
                         onChange={(event) => {
                             viewModel.handleSearchChange(event);
                         }}
@@ -45,6 +46,7 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
                     />
                 ) : (
                     <Input
+                        dataTestId="SuggestControlInput_display-input"
                         onFocus={() => {
                             viewModel.handleFocusChange(true);
                         }}
@@ -56,8 +58,9 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
                 {(localModel.isLoading && <div>{loadingMessage}</div>) ||
                     (localModel.filteredOptions.length > 0 && (
                         <ul className="suggestions-list">
-                            {localModel.filteredOptions.map((option) => (
+                            {localModel.filteredOptions.map((option, index) => (
                                 <li
+                                    data-testid={`SuggestControlInput_suggestion-item_${index}`}
                                     key={option.id}
                                     onClick={() => handleSelectOption(option)}
                                     role="presentation"
