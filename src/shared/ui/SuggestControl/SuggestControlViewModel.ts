@@ -56,6 +56,9 @@ export const createViewModel = (props: TProps) => {
                     id: country.name,
                     label: `${country.name} (${country.fullName})`,
                     value: country.name,
+                    key: country.name,
+                    type: 'item',
+                    title: country.name,
                 })) || []
             );
         }
@@ -70,8 +73,8 @@ export const createViewModel = (props: TProps) => {
                 const filtered: IOption[] = [];
 
                 limitedResults.forEach((option) => {
-                    if (!uniqueSet.has(option.id)) {
-                        uniqueSet.add(option.id);
+                    if (option?.key && !uniqueSet.has(option.key as string)) {
+                        uniqueSet.add(option.key as string);
                         filtered.push(option);
                     }
                 });
@@ -93,7 +96,7 @@ export const createViewModel = (props: TProps) => {
         }
 
         handleSelectOption(option: IOption) {
-            this._model.setDisplayValue(option.value);
+            this._model.setDisplayValue(option?.title as string);
             this._model.reset();
         }
     }

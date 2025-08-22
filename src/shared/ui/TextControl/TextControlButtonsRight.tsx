@@ -1,3 +1,4 @@
+import {Flex} from 'antd';
 import React from 'react';
 
 /**
@@ -20,20 +21,5 @@ type TProps = {
 export const TextControlRightButtons: React.FC<TProps> = (props) => {
     const {children} = props;
 
-    return (
-        <div
-            style={{
-                /**
-                 * flexGrow: 1 - позволяет компоненту занимать доступное пространство
-                 * display: 'flex' - включает режим Flexbox
-                 * justifyContent: 'flex-end' - выравнивает элементы по правому краю
-                 */
-                flexGrow: 1,
-                display: 'flex',
-                justifyContent: 'flex-end',
-            }}
-        >
-            {children}
-        </div>
-    );
+    return <Flex gap="middle">{children}</Flex>;
 };

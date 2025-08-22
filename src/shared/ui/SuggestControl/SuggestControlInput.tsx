@@ -5,12 +5,10 @@ import {
     SuggestControlProvider,
     useSuggestControlContext,
 } from './SuggestControlProvider';
+import {Dropdown} from 'antd';
+import {MenuItemType} from 'antd/es/menu/interface';
 
-export interface IOption {
-    id: string;
-    label: string;
-    value: string;
-}
+export type IOption = MenuItemType;
 
 type TSuggestControlInputObservableProps = {
     loadingMessage?: string;
@@ -57,18 +55,28 @@ const SuggestControlInputObservable: React.FunctionComponent<TSuggestControlInpu
                 )}
                 {(localModel.isLoading && <div>{loadingMessage}</div>) ||
                     (localModel.filteredOptions.length > 0 && (
-                        <ul className="suggestions-list">
-                            {localModel.filteredOptions.map((option, index) => (
-                                <li
-                                    data-testid={`SuggestControlInput_suggestion-item_${index}`}
-                                    key={option.id}
-                                    onClick={() => handleSelectOption(option)}
-                                    role="presentation"
-                                >
-                                    {option.label}
-                                </li>
-                            ))}
-                        </ul>
+                        <Dropdown
+                            menu={{
+                                items: localModel.filteredOptions.map(
+                                    (option, index) => ({
+                                        ...option,
+                                        label: (
+                                            <a
+                                                data-testid={`SuggestControlInput_suggestion-item_${index}`}
+                                                onClick={() =>
+                                                    handleSelectOption(option)
+                                                }
+                                                role="presentation"
+                                            >
+                                                {option.label}
+                                            </a>
+                                        ),
+                                    })
+                                ),
+                            }}
+                            placement="bottomRight"
+                            open
+                        />
                     ))}
             </>
         );

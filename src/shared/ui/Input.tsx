@@ -1,3 +1,4 @@
+import {Input as InputInternal, InputProps} from 'antd';
 import React from 'react';
 import {IDataTestAttributes} from '../model/types';
 
@@ -5,15 +6,7 @@ import {IDataTestAttributes} from '../model/types';
  * Тип пропсов для компонента Input.
  */
 type TProps = IDataTestAttributes &
-    React.RefAttributes<HTMLInputElement> &
-    React.InputHTMLAttributes<HTMLInputElement> & {
-        onBlur?: () => void;
-        /**
-         * Обработчик события изменения значения в поле ввода.
-         * Вызывается при изменении значения пользователем.
-         */
-        onChange?: React.ChangeEventHandler<HTMLInputElement>;
-        onFocus?: () => void;
+    InputProps & {
         /**
          * Текущее значение поля ввода.
          * Отображается в поле и используется для управления состоянием.
@@ -29,14 +22,7 @@ type TProps = IDataTestAttributes &
  * @returns JSX-элемент input
  */
 export const Input: React.FC<TProps> = (props) => {
-    const {dataTestId, onChange, value, ...rest} = props;
+    const {dataTestId, value, ...rest} = props;
 
-    return (
-        <input
-            {...rest}
-            data-testid={dataTestId}
-            onChange={onChange}
-            value={value}
-        />
-    );
+    return <InputInternal {...rest} data-testid={dataTestId} value={value} />;
 };

@@ -3,6 +3,7 @@ import {TextControlProvider} from './TextControlProvider';
 import {TextControlText} from './TextControlText';
 import {TextControlLeftButtons} from './TextControlButtonsLeft';
 import {TextControlRightButtons} from './TextControlButtonsRight';
+import {Flex} from 'antd';
 
 /**
  * Тип, описывающий структуру подкомпонентов TextControl.
@@ -44,9 +45,9 @@ const TextControl: React.FC<TProps> & TTextControlComponent = (props) => {
     const {children} = props;
 
     return (
-        <div style={{display: 'flex'}}>
+        <Flex gap="middle">
             <TextControlProvider>{children}</TextControlProvider>
-        </div>
+        </Flex>
     );
 };
 
